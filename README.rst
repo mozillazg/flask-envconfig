@@ -20,7 +20,7 @@ Simple usage:
 ::
 
     from flask import Flask
-    from flask.ext.environ import EnvConfig
+    from flask.ext.envconfig import EnvConfig
 
     app = Flask(__name__)
     env = EnvConfig(app)
