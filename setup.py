@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Flask-EnvConfig',
-    version='0.1.0',
+    version='0.2.0',
     url='https://bitbucket.org/romabysen/flask-envconfig/',
     license='BSD',
     author='Lars Hansson',

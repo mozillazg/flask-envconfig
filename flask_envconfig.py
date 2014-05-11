@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+import ast
 from os import environ
 
 DEFAULT_ENV_PREFIX = 'FLASK_'
@@ -17,16 +18,9 @@ class EnvConfig(object):
         for key, value in environ.iteritems():
             if key.startswith(prefix):
                 key = key[len(prefix):]
-                if value.lower() == 'true':
-                    app.config[key] = True
-                elif value.lower() == 'false':
-                    app.config[key] = False
-                elif value.lower() == 'none':
-                    app.config[key] = None
-                else:
-                    try:
-                        app.config[key] = value
-                        app.config[key] = float(value)
-                        app.config[key] = int(value)
-                    except ValueError:
-                        pass
+                try:
+                    value = ast.literal_eval(value)
+                except (ValueError, SyntaxError):
+                    pass
+                app.config[key] = value
+
