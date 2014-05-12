@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+FLask-EnvConfig
+
+:copyright: (c) 2014 by Lars Hansson.
+:license: BSD, see LICENSE for more details.
+"""
+
 from __future__ import absolute_import
 import ast
 from os import environ
