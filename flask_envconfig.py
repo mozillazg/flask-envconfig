@@ -9,8 +9,10 @@ FLask-EnvConfig
 from __future__ import absolute_import
 import ast
 from os import environ
+import sys
 
 DEFAULT_ENV_PREFIX = 'FLASK_'
+PY2 = sys.version_info[0] == 2
 
 
 class EnvConfig(object):
@@ -22,7 +24,7 @@ class EnvConfig(object):
             self.init_app(app, prefix)
 
     def init_app(self, app, prefix=DEFAULT_ENV_PREFIX):
-        for key, value in environ.iteritems():
+        for key, value in iteritems(environ):
             if key.startswith(prefix):
                 key = key[len(prefix):]
                 try:
@@ -31,3 +33,9 @@ class EnvConfig(object):
                     pass
                 app.config[key] = value
 
+
+def iteritems(d):
+    if PY2:
+        return d.iteritems()
+    else:
+        return d.items()
